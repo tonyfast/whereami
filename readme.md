@@ -7,6 +7,11 @@ Logic circuits to identify the context a notebook's derived source is executing 
 * Is source in an Interactive session?
 * Is this a command line tool?
 
+
+---
+
+        ipython setup.py develop
+
 ## Basic usage
 
 
@@ -46,43 +51,20 @@ Logic circuits to identify the context a notebook's derived source is executing 
 
 ```python
     %reload_ext whereami
+    %run whereami.ipynb
+    %run whereami.py
 ```
 
     
     {FILE: 🚫, INTERACTIVE: ✅, JUPYTER: ✅, JYTHON: 🚫, MAIN: ✅, MODULE: 🚫, PYPY: 🚫, PYTHON: ✅, SCRIPT: 🚫}
     
-
-
-
-```python
-    %run whereami.ipynb
-```
-
-    TestResults(failed=0, attempted=6)
-    [NbConvertApp] Converting notebook whereami.ipynb to script
-    [NbConvertApp] Writing 4957 bytes to whereami.py
     
-    {PYPY: 🚫, JUPYTER: 🚫, MODULE: 🚫, FILE: ✅, SCRIPT: ✅, INTERACTIVE: 🚫, JYTHON: 🚫, PYTHON: ✅, MAIN: ✅}
+    {FILE: ✅, INTERACTIVE: ✅, JUPYTER: 🚫, JYTHON: 🚫, MAIN: ✅, MODULE: 🚫, PYPY: 🚫, PYTHON: ✅, SCRIPT: ✅}
     
-    
-    {FILE: ✅, INTERACTIVE: ✅, JUPYTER: ✅, JYTHON: 🚫, MAIN: ✅, MODULE: 🚫, PYPY: 🚫, PYTHON: ✅, SCRIPT: ✅}
-    
-
-
-
-```python
-    %run whereami.py
-```
-
     
     {FILE: ✅, INTERACTIVE: ✅, JUPYTER: 🚫, JYTHON: 🚫, MAIN: ✅, MODULE: 🚫, PYPY: 🚫, PYTHON: ✅, SCRIPT: ✅}
     
 
-
-
-```python
-    %run -n whereami.py
-```
 
 # Developer
 
@@ -94,7 +76,7 @@ Logic circuits to identify the context a notebook's derived source is executing 
     __import__('setuptools').setup(name="whereami", py_modules=['whereami'])        
 ```
 
-    Writing setup.py
+    Overwriting setup.py
 
 
 
@@ -107,7 +89,19 @@ Logic circuits to identify the context a notebook's derived source is executing 
         !jupyter nbconvert --to python readme.ipynb
         !jupyter nbconvert --to markdown readme.ipynb
         !jupyter nbconvert index.ipynb
-    elif huh.MAIN:
-        !ipython setup.py develop
+```
 
+    [NbConvertApp] Converting notebook whereami.ipynb to markdown
+    [NbConvertApp] Executing notebook with kernel: other-env
+    [NbConvertApp] Writing 5817 bytes to whereami.md
+    wrote whereami.html
+    [NbConvertApp] Converting notebook readme.ipynb to python
+
+
+`whereami` as a package.
+
+
+```python
+    if huh.MAIN and not huh.JUPYTER:
+        !ipython setup.py develop
 ```

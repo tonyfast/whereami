@@ -8,10 +8,15 @@
 # * Is Jupyter running this?
 # * Is source in an Interactive session?
 # * Is this a command line tool?
+# 
+# 
+# ---
+# 
+#         ipython setup.py develop
 
 # ## Basic usage
 
-# In[40]:
+# In[45]:
 
 
 huh = __import__('whereami').huh(globals())
@@ -22,7 +27,7 @@ huh
 # 
 # `whereami` contains an object `state` that contains
 
-# In[7]:
+# In[46]:
 
 
 import whereami
@@ -31,35 +36,19 @@ whereami.state
 
 # ## IPython magic
 
-# In[6]:
+# In[52]:
 
 
 get_ipython().magic('reload_ext whereami')
-
-
-# In[16]:
-
-
 get_ipython().magic('run whereami.ipynb')
-
-
-# In[22]:
-
-
 get_ipython().magic('run whereami.py')
-
-
-# In[23]:
-
-
-get_ipython().magic('run -n whereami.py')
 
 
 # # Developer
 # 
 # `whereami` contains it's own build steps.  Run that notebook in `--execute` mode by checking for `huh.JUPYTER`.
 
-# In[43]:
+# In[51]:
 
 
 get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')
@@ -76,6 +65,13 @@ if huh.JUPYTER:
     get_ipython().system('jupyter nbconvert --to python readme.ipynb')
     get_ipython().system('jupyter nbconvert --to markdown readme.ipynb')
     get_ipython().system('jupyter nbconvert index.ipynb')
-elif huh.MAIN:
+
+
+# `whereami` as a package.
+
+# In[ ]:
+
+
+if huh.MAIN and not huh.JUPYTER:
     get_ipython().system('ipython setup.py develop')
 

@@ -37,7 +37,7 @@ __all__ = 'huh', 'dunder'
 
 
 # ## whereami exports
-
+# 
 # `dunder` is short hand for **d**ouble**under**core.
 
 # In[182]:
@@ -48,7 +48,7 @@ dunder = "__%s__"
 
 # # Where are we `huh`?  
 
-# In[184]:
+# In[295]:
 
 
 class huh(object):
@@ -75,7 +75,7 @@ class huh(object):
 
 # # Are we in a live 🥁 kernel?
 
-# In[210]:
+# In[297]:
 
 
 @huh.state
@@ -99,7 +99,7 @@ huh(globals()).INTERACTIVE and __import__('IPython').get_ipython()
 
 # # We know that we are running 🐍.
 
-# In[211]:
+# In[298]:
 
 
 @huh.state
@@ -108,7 +108,7 @@ def PYTHON(x:huh): return __import__("sys").version_info.major
 
 # ### What about J🐍?
 
-# In[212]:
+# In[299]:
 
 
 @huh.state
@@ -117,7 +117,7 @@ def JYTHON(x:huh): return "java" in __import__("platform").system().lower()
 
 # ### ...or 🍰🍰?
 
-# In[213]:
+# In[300]:
 
 
 @huh.state
@@ -175,6 +175,8 @@ def SCRIPT(x):
     """Is the command procedural?"""
     return x.FILE and x.MAIN
 
+
+# ### ...or a module.
 
 # In[291]:
 
