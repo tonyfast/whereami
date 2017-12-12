@@ -1,7 +1,9 @@
 
 # coding: utf-8
 
-# # whereami
+# # [whereami](https://github.com/tonyfast/whereami)
+# 
+# <code>[https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
 # 
 # Logic circuits to identify the context a notebook's derived source is executing in.
 # 
@@ -71,7 +73,7 @@ if huh.JUPYTER:
 
 # `whereami` as a package.
 
-# In[ ]:
+# In[60]:
 
 
 if huh.MAIN and not huh.JUPYTER:
