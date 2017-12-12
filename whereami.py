@@ -3,8 +3,14 @@
 
 # # `whereami`
 # 
-# * [Demonstration](index.ipynb)
-# * [Readme](readme.ipynb)
+# Logic circuits to identify the context a notebook's derived source is executing in.
+# 
+# * Is Jupyter running this?
+# * Is source in an Interactive session?
+# * Is this a command line tool?
+# ---
+# 
+# > [Demonstration](index.ipynb) | [`readme`](readme.ipynb)
 
 # In[180]:
 
@@ -69,7 +75,7 @@ class huh(object):
 
 # # Are we in a live 🥁 kernel?
 
-# In[194]:
+# In[210]:
 
 
 @huh.state
@@ -87,11 +93,13 @@ def __init__(x:huh, object:dict=None):
         x.INTERACTIVE = False
         if not object: object = globals()
     x.globals = object
+    
+huh(globals()).INTERACTIVE and __import__('IPython').get_ipython()
 
 
 # # We know that we are running 🐍.
 
-# In[195]:
+# In[211]:
 
 
 @huh.state
@@ -100,7 +108,7 @@ def PYTHON(x:huh): return __import__("sys").version_info.major
 
 # ### What about J🐍?
 
-# In[196]:
+# In[212]:
 
 
 @huh.state
@@ -109,7 +117,7 @@ def JYTHON(x:huh): return "java" in __import__("platform").system().lower()
 
 # ### ...or 🍰🍰?
 
-# In[197]:
+# In[213]:
 
 
 @huh.state
@@ -118,39 +126,23 @@ def PYPY(x:huh): return "pypy" in __import__("platform").python_implementation()
 
 # ## Are we running code from a `__file__`?
 
-# In[185]:
+# In[293]:
 
 
 @huh.state
 def FILE(x:huh): 
     """Does file exists in the namespace?
     
-    >>> if state.JUPYTER:
-    ...     assert not state.FILE
-    ... else:
-    ...     assert state.FILE
+    %run is a special case where a jupyter application has a file.
     """
     return dunder%'file' in x.globals
 
 
-# ### Jupyter applications _do not_ rely on a `__file__`.
-
-# In[186]:
-
-
-@huh.state
-def JUPYTER(x): 
-    """
-    >>> if state.JUPYTER:
-    ...     assert state.MAIN and state.MAIN ^ state.FILE
-    ... else:
-    ...     assert state.FILE"""
-    return not x.FILE
-
-
 # ## Are we running code in the `__main__` context?
+# 
+# Jupyter applications and Python applications may be run in the main context.
 
-# In[198]:
+# In[294]:
 
 
 @huh.state
@@ -162,25 +154,35 @@ def MAIN(x:huh):
 __name__
 
 
+# ### _most_ Jupyter applications _do not_ rely on a `__file__`.
+
+# In[289]:
+
+
+@huh.state
+def JUPYTER(x): 
+    """Is jupyter running the application?"""
+    return x.MAIN and not x.FILE
+
+
 # ## Are we running code as a [scripting language]()?
 
-# In[199]:
+# In[290]:
 
 
 @huh.state
 def SCRIPT(x): 
-    """
-    >>> assert not state.SCRIPT or state.SCRIPT ^ state.INTERACTIVE
-    """
+    """Is the command procedural?"""
     return x.FILE and x.MAIN
 
 
-# In[200]:
+# In[291]:
 
 
 @huh.state
 def MODULE(x): 
-    """
+    """Is the script imported by Python?
+    
     >>> if state.SCRIPT:
     ...     assert not state.MODULE
     """
@@ -189,7 +191,7 @@ def MODULE(x):
 
 # ## What does `huh` look like, huh?
 
-# In[201]:
+# In[292]:
 
 
 @huh.state
@@ -202,7 +204,11 @@ def __repr__(self):
         (k, "🚫✅"[v]) for k, v in self)).replace("'", "")
 
 
-# In[202]:
+# # Internal Usage
+# 
+# `whereami.state` records it's state when it is used.s
+
+# In[285]:
 
 
 state = huh(globals())
@@ -211,30 +217,30 @@ state.__doc__ = """The state of the imported `whereami` module."""
 
 # ## Development and Testing
 
-# In[ ]:
+# In[286]:
 
 
-if state.JUPYTER:
+if state.MAIN and not state.FILE:
     print(__import__('doctest').testmod())
     get_ipython().system('jupyter nbconvert --to script whereami.ipynb')
     get_ipython().system('python whereami.py')
 
 
-# # Run `whereami` as a script.
+# ## Run `whereami` as a script.
 # 
 #     if __name__ == dunder%'main':
 #         print(state)
 
-# In[204]:
+# In[267]:
 
 
-if state.MAIN :
+if state.MAIN:
     print(state)
 
 
-# Make it an IPython extension.
+# ## [Make it an IPython extension.](http://ipython.readthedocs.io/en/stable/config/extensions/#writing-extensions)
 
-# In[205]:
+# In[208]:
 
 
 def load_ipython_extension(ip):
