@@ -3,7 +3,7 @@
 
 # # [whereami](https://github.com/tonyfast/whereami)
 # 
-# <code>[https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
+# <code>[pip install git+https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
 # 
 # Logic circuits to identify the context a notebook's derived source is executing in.
 # 
@@ -20,7 +20,7 @@
 
 # ## Basic usage
 
-# In[55]:
+# In[62]:
 
 
 huh = __import__('whereami').huh(globals())
@@ -31,7 +31,7 @@ huh
 # 
 # `whereami` contains an object `state` that contains
 
-# In[56]:
+# In[63]:
 
 
 import whereami
@@ -40,7 +40,7 @@ whereami.state
 
 # ## IPython magic
 
-# In[57]:
+# In[64]:
 
 
 get_ipython().magic('reload_ext whereami')
@@ -52,7 +52,7 @@ get_ipython().magic('run whereami.py')
 # 
 # `whereami` contains it's own build steps.  Run that notebook in `--execute` mode by checking for `huh.JUPYTER`.
 
-# In[58]:
+# In[65]:
 
 
 get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')
@@ -73,7 +73,7 @@ if huh.JUPYTER:
 
 # `whereami` as a package.
 
-# In[60]:
+# In[ ]:
 
 
 if huh.MAIN and not huh.JUPYTER:

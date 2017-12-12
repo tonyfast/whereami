@@ -1,7 +1,7 @@
 
 # [whereami](https://github.com/tonyfast/whereami)
 
-<code>[https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
+<code>[pip install git+https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
 
 Logic circuits to identify the context a notebook's derived source is executing in.
 
@@ -94,6 +94,10 @@ Logic circuits to identify the context a notebook's derived source is executing 
         !jupyter nbconvert --to markdown readme.ipynb
         !jupyter nbconvert index.ipynb
 ```
+
+    [NbConvertApp] Converting notebook whereami.ipynb to markdown
+    [NbConvertApp] Executing notebook with kernel: other-env
+
 
 `whereami` as a package.
 
