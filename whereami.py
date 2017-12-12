@@ -10,7 +10,7 @@
 # * Is this a command line tool?
 # ---
 # 
-# > [Demonstration](index.ipynb) | [`readme`](readme.ipynb)
+# > [Presentation](index.ipynb) | [`readme`](readme.ipynb)
 
 # In[180]:
 

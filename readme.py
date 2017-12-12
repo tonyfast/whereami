@@ -20,7 +20,7 @@
 
 # ## Basic usage
 
-# In[62]:
+# In[68]:
 
 
 huh = __import__('whereami').huh(globals())
@@ -31,7 +31,7 @@ huh
 # 
 # `whereami` contains an object `state` that contains
 
-# In[63]:
+# In[69]:
 
 
 import whereami
@@ -40,7 +40,7 @@ whereami.state
 
 # ## IPython magic
 
-# In[64]:
+# In[70]:
 
 
 get_ipython().magic('reload_ext whereami')
@@ -52,7 +52,7 @@ get_ipython().magic('run whereami.py')
 # 
 # `whereami` contains it's own build steps.  Run that notebook in `--execute` mode by checking for `huh.JUPYTER`.
 
-# In[65]:
+# In[71]:
 
 
 get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')
@@ -73,7 +73,7 @@ if huh.JUPYTER:
 
 # `whereami` as a package.
 
-# In[ ]:
+# In[67]:
 
 
 if huh.MAIN and not huh.JUPYTER:
