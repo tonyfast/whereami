@@ -10,13 +10,15 @@
 # * Is this a command line tool?
 # 
 # 
+# > [Original Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/)
+# 
 # ---
 # 
 #         ipython setup.py develop
 
 # ## Basic usage
 
-# In[45]:
+# In[55]:
 
 
 huh = __import__('whereami').huh(globals())
@@ -27,7 +29,7 @@ huh
 # 
 # `whereami` contains an object `state` that contains
 
-# In[46]:
+# In[56]:
 
 
 import whereami
@@ -36,7 +38,7 @@ whereami.state
 
 # ## IPython magic
 
-# In[52]:
+# In[57]:
 
 
 get_ipython().magic('reload_ext whereami')
@@ -48,7 +50,7 @@ get_ipython().magic('run whereami.py')
 # 
 # `whereami` contains it's own build steps.  Run that notebook in `--execute` mode by checking for `huh.JUPYTER`.
 
-# In[51]:
+# In[58]:
 
 
 get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')

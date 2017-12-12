@@ -8,6 +8,8 @@ Logic circuits to identify the context a notebook's derived source is executing 
 * Is this a command line tool?
 
 
+> [Original Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/)
+
 ---
 
         ipython setup.py develop
@@ -95,7 +97,6 @@ Logic circuits to identify the context a notebook's derived source is executing 
     [NbConvertApp] Executing notebook with kernel: other-env
     [NbConvertApp] Writing 5817 bytes to whereami.md
     wrote whereami.html
-    [NbConvertApp] Converting notebook readme.ipynb to python
 
 
 `whereami` as a package.
