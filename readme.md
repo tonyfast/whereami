@@ -97,6 +97,14 @@ Logic circuits to identify the context a notebook's derived source is executing 
 
     [NbConvertApp] Converting notebook whereami.ipynb to markdown
     [NbConvertApp] Executing notebook with kernel: other-env
+    [NbConvertApp] Writing 5816 bytes to whereami.md
+    wrote whereami.html
+    [NbConvertApp] Converting notebook readme.ipynb to python
+    [NbConvertApp] Writing 1795 bytes to readme.py
+    [NbConvertApp] Converting notebook readme.ipynb to markdown
+    [NbConvertApp] Writing 2282 bytes to readme.md
+    [NbConvertApp] Converting notebook index.ipynb to html
+    [NbConvertApp] Writing 258743 bytes to index.html
 
 
 `whereami` as a package.

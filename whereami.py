@@ -12,7 +12,7 @@
 # 
 # > [Presentation](index.ipynb) | [`readme`](readme.ipynb)
 
-# In[180]:
+# In[1]:
 
 
 __doc__ = """whereami tests
@@ -40,7 +40,7 @@ __all__ = 'huh', 'dunder'
 # 
 # `dunder` is short hand for **d**ouble**under**core.
 
-# In[182]:
+# In[2]:
 
 
 dunder = "__%s__"
@@ -48,7 +48,7 @@ dunder = "__%s__"
 
 # # Where are we `huh`?  
 
-# In[295]:
+# In[3]:
 
 
 class huh(object):
@@ -75,7 +75,7 @@ class huh(object):
 
 # # Are we in a live 🥁 kernel?
 
-# In[297]:
+# In[4]:
 
 
 @huh.state
@@ -99,7 +99,7 @@ huh(globals()).INTERACTIVE and __import__('IPython').get_ipython()
 
 # # We know that we are running 🐍.
 
-# In[298]:
+# In[5]:
 
 
 @huh.state
@@ -108,7 +108,7 @@ def PYTHON(x:huh): return __import__("sys").version_info.major
 
 # ### What about J🐍?
 
-# In[299]:
+# In[6]:
 
 
 @huh.state
@@ -117,7 +117,7 @@ def JYTHON(x:huh): return "java" in __import__("platform").system().lower()
 
 # ### ...or 🍰🍰?
 
-# In[300]:
+# In[7]:
 
 
 @huh.state
@@ -126,7 +126,7 @@ def PYPY(x:huh): return "pypy" in __import__("platform").python_implementation()
 
 # ## Are we running code from a `__file__`?
 
-# In[293]:
+# In[8]:
 
 
 @huh.state
@@ -142,7 +142,7 @@ def FILE(x:huh):
 # 
 # Jupyter applications and Python applications may be run in the main context.
 
-# In[294]:
+# In[9]:
 
 
 @huh.state
@@ -156,7 +156,7 @@ __name__
 
 # ### _most_ Jupyter applications _do not_ rely on a `__file__`.
 
-# In[289]:
+# In[10]:
 
 
 @huh.state
@@ -167,7 +167,7 @@ def JUPYTER(x):
 
 # ## Are we running code as a [scripting language]()?
 
-# In[290]:
+# In[11]:
 
 
 @huh.state
@@ -178,7 +178,7 @@ def SCRIPT(x):
 
 # ### ...or a module.
 
-# In[291]:
+# In[12]:
 
 
 @huh.state
@@ -193,7 +193,7 @@ def MODULE(x):
 
 # ## What does `huh` look like, huh?
 
-# In[292]:
+# In[13]:
 
 
 @huh.state
@@ -208,9 +208,9 @@ def __repr__(self):
 
 # # Internal Usage
 # 
-# `whereami.state` records it's state when it is used.s
+# `whereami.state` records it's state when it is used.
 
-# In[285]:
+# In[14]:
 
 
 state = huh(globals())
@@ -219,7 +219,7 @@ state.__doc__ = """The state of the imported `whereami` module."""
 
 # ## Development and Testing
 
-# In[286]:
+# In[15]:
 
 
 if state.MAIN and not state.FILE:
@@ -233,7 +233,7 @@ if state.MAIN and not state.FILE:
 #     if __name__ == dunder%'main':
 #         print(state)
 
-# In[267]:
+# In[16]:
 
 
 if state.MAIN:
@@ -242,7 +242,7 @@ if state.MAIN:
 
 # ## [Make it an IPython extension.](http://ipython.readthedocs.io/en/stable/config/extensions/#writing-extensions)
 
-# In[208]:
+# In[17]:
 
 
 def load_ipython_extension(ip):

@@ -58,7 +58,7 @@ get_ipython().magic('run whereami.py')
 get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')
 
 
-# In[ ]:
+# In[72]:
 
 
 huh = __import__('whereami').huh(globals())
@@ -73,7 +73,7 @@ if huh.JUPYTER:
 
 # `whereami` as a package.
 
-# In[67]:
+# In[73]:
 
 
 if huh.MAIN and not huh.JUPYTER:
