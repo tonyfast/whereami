@@ -3,8 +3,6 @@
 
 <code>[pip install git+https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
 
-> But, really don't use this.  Just consider the logic for your needs.
-
 Logic circuits to identify the context a notebook's derived source is executing in.
 
 * Is Jupyter running this?
@@ -12,7 +10,9 @@ Logic circuits to identify the context a notebook's derived source is executing 
 * Is this a command line tool?
 
 
-> [Original Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/)
+> [Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/) | [Source](whereami.ipynb) | [`readme`](readme.ipynb)
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tonyfast/whereami/master?filepath=index.ipynb)
 
 ---
 
@@ -78,15 +78,6 @@ Logic circuits to identify the context a notebook's derived source is executing 
 
 
 ```python
-    %%file setup.py
-    __import__('setuptools').setup(name="whereami", py_modules=['whereami'])        
-```
-
-    Overwriting setup.py
-
-
-
-```python
     huh = __import__('whereami').huh(globals())
     if huh.JUPYTER:
         !jupyter nbconvert --to markdown --execute whereami.ipynb
@@ -99,14 +90,14 @@ Logic circuits to identify the context a notebook's derived source is executing 
 
     [NbConvertApp] Converting notebook whereami.ipynb to markdown
     [NbConvertApp] Executing notebook with kernel: other-env
-    [NbConvertApp] Writing 5815 bytes to whereami.md
+    [NbConvertApp] Writing 6079 bytes to whereami.md
     wrote whereami.html
     [NbConvertApp] Converting notebook readme.ipynb to python
-    [NbConvertApp] Writing 1796 bytes to readme.py
+    [NbConvertApp] Writing 1958 bytes to readme.py
     [NbConvertApp] Converting notebook readme.ipynb to markdown
-    [NbConvertApp] Writing 2708 bytes to readme.md
+    [NbConvertApp] Writing 2862 bytes to readme.md
     [NbConvertApp] Converting notebook index.ipynb to html
-    [NbConvertApp] Writing 258735 bytes to index.html
+    [NbConvertApp] Writing 259086 bytes to index.html
 
 
 `whereami` as a package.
@@ -114,5 +105,5 @@ Logic circuits to identify the context a notebook's derived source is executing 
 
 ```python
     if huh.MAIN and not huh.JUPYTER:
-        !ipython setup.py develop
+        __import__('setuptools').setup(name="whereami", py_modules=['whereami'])        
 ```

@@ -1,1 +1,0 @@
-__import__('setuptools').setup(name="whereami", py_modules=['whereami'])        

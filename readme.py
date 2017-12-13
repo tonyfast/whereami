@@ -5,8 +5,6 @@
 # 
 # <code>[pip install git+https://github.com/tonyfast/whereami](https://github.com/tonyfast/whereami)</code>
 # 
-# > But, really don't use this.  Just consider the logic for your needs.
-# 
 # Logic circuits to identify the context a notebook's derived source is executing in.
 # 
 # * Is Jupyter running this?
@@ -14,7 +12,9 @@
 # * Is this a command line tool?
 # 
 # 
-# > [Original Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/)
+# > [Presentation](http://nbviewer.jupyter.org/format/slides/github/tonyfast/whereami/blob/master/whereami.ipynb#/) | [Source](whereami.ipynb) | [`readme`](readme.ipynb)
+# 
+# [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tonyfast/whereami/master?filepath=index.ipynb)
 # 
 # ---
 # 
@@ -54,12 +54,6 @@ get_ipython().magic('run whereami.py')
 # 
 # `whereami` contains it's own build steps.  Run that notebook in `--execute` mode by checking for `huh.JUPYTER`.
 
-# In[4]:
-
-
-get_ipython().run_cell_magic('file', 'setup.py', '__import__(\'setuptools\').setup(name="whereami", py_modules=[\'whereami\'])        ')
-
-
 # In[5]:
 
 
@@ -79,5 +73,5 @@ if huh.JUPYTER:
 
 
 if huh.MAIN and not huh.JUPYTER:
-    get_ipython().system('ipython setup.py develop')
+    __import__('setuptools').setup(name="whereami", py_modules=['whereami'])        
 
